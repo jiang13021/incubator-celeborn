@@ -96,4 +96,119 @@ public enum StatusCode {
   public final byte getValue() {
     return value;
   }
+
+  public static StatusCode fromValue(byte value) {
+    switch (value) {
+      case 0:
+        return SUCCESS;
+      case 1:
+        return PARTIAL_SUCCESS;
+      case 2:
+        return REQUEST_FAILED;
+      case 3:
+        return SHUFFLE_ALREADY_REGISTERED;
+      case 4:
+        return SHUFFLE_NOT_REGISTERED;
+      case 5:
+        return RESERVE_SLOTS_FAILED;
+      case 6:
+        return SLOT_NOT_AVAILABLE;
+      case 7:
+        return WORKER_NOT_FOUND;
+      case 8:
+        return PARTITION_NOT_FOUND;
+      case 9:
+        return REPLICA_PARTITION_NOT_FOUND;
+      case 10:
+        return DELETE_FILES_FAILED;
+      case 11:
+        return PARTITION_EXISTS;
+      case 12:
+        return REVIVE_FAILED;
+      case 13:
+        return REPLICATE_DATA_FAILED;
+      case 14:
+        return NUM_MAPPER_ZERO;
+      case 15:
+        return MAP_ENDED;
+      case 16:
+        return STAGE_ENDED;
+      case 17:
+        return PUSH_DATA_FAIL_NON_CRITICAL_CAUSE_PRIMARY;
+      case 18:
+        return PUSH_DATA_WRITE_FAIL_REPLICA;
+      case 19:
+        return PUSH_DATA_WRITE_FAIL_PRIMARY;
+      case 20:
+        return PUSH_DATA_FAIL_PARTITION_NOT_FOUND;
+      case 21:
+        return HARD_SPLIT;
+      case 22:
+        return SOFT_SPLIT;
+      case 23:
+        return STAGE_END_TIME_OUT;
+      case 24:
+        return SHUFFLE_DATA_LOST;
+      case 25:
+        return WORKER_SHUTDOWN;
+      case 26:
+        return NO_AVAILABLE_WORKING_DIR;
+      case 27:
+        return WORKER_EXCLUDED;
+      case 28:
+        return WORKER_UNKNOWN;
+      case 29:
+        return COMMIT_FILE_EXCEPTION;
+      case 30:
+        return PUSH_DATA_SUCCESS_PRIMARY_CONGESTED;
+      case 31:
+        return PUSH_DATA_SUCCESS_REPLICA_CONGESTED;
+      case 32:
+        return PUSH_DATA_HANDSHAKE_FAIL_REPLICA;
+      case 33:
+        return PUSH_DATA_HANDSHAKE_FAIL_PRIMARY;
+      case 34:
+        return REGION_START_FAIL_REPLICA;
+      case 35:
+        return REGION_START_FAIL_PRIMARY;
+      case 36:
+        return REGION_FINISH_FAIL_REPLICA;
+      case 37:
+        return REGION_FINISH_FAIL_PRIMARY;
+      case 38:
+        return PUSH_DATA_CREATE_CONNECTION_FAIL_PRIMARY;
+      case 39:
+        return PUSH_DATA_CREATE_CONNECTION_FAIL_REPLICA;
+      case 40:
+        return PUSH_DATA_CONNECTION_EXCEPTION_PRIMARY;
+      case 41:
+        return PUSH_DATA_CONNECTION_EXCEPTION_REPLICA;
+      case 42:
+        return PUSH_DATA_TIMEOUT_PRIMARY;
+      case 43:
+        return PUSH_DATA_TIMEOUT_REPLICA;
+      case 44:
+        return PUSH_DATA_PRIMARY_WORKER_EXCLUDED;
+      case 45:
+        return PUSH_DATA_REPLICA_WORKER_EXCLUDED;
+      case 46:
+        return FETCH_DATA_TIMEOUT;
+      case 47:
+        return REVIVE_INITIALIZED;
+      case 48:
+        return DESTROY_SLOTS_MOCK_FAILURE;
+      case 49:
+        return COMMIT_FILES_MOCK_FAILURE;
+      case 50:
+        return PUSH_DATA_FAIL_NON_CRITICAL_CAUSE_REPLICA;
+      case 51:
+        return OPEN_STREAM_FAILED;
+      case 52:
+        return SEGMENT_START_FAIL_REPLICA;
+      case 53:
+        return SEGMENT_START_FAIL_PRIMARY;
+      default:
+        throw new IllegalArgumentException("Unknown status code: " + value);
+    }
+  }
 }

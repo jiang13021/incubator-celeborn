@@ -95,7 +95,8 @@ public abstract class Message implements Encodable {
     HEARTBEAT(22),
     SEGMENT_START(23),
     NOTIFY_REQUIRED_SEGMENT(24),
-    SUBPARTITION_READ_DATA(25);
+    SUBPARTITION_READ_DATA(25),
+    PUSH_MERGED_DATA_UNSUCCESSFUL_PARTITION_INFO(26);
 
     private final byte id;
 
@@ -174,6 +175,8 @@ public abstract class Message implements Encodable {
           return NOTIFY_REQUIRED_SEGMENT;
         case 25:
           return SUBPARTITION_READ_DATA;
+        case 26:
+          return PUSH_MERGED_DATA_UNSUCCESSFUL_PARTITION_INFO;
         case -1:
           throw new IllegalArgumentException("User type messages cannot be decoded.");
         default:
@@ -247,6 +250,9 @@ public abstract class Message implements Encodable {
 
       case HEARTBEAT:
         return new Heartbeat();
+
+      case PUSH_MERGED_DATA_UNSUCCESSFUL_PARTITION_INFO:
+        return PushMergedDataUnsuccessfulPartitionInfo.decode(in);
 
       default:
         throw new IllegalArgumentException("Unexpected message type: " + msgType);

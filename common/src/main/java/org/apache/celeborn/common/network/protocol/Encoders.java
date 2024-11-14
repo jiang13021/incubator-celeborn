@@ -44,6 +44,29 @@ public class Encoders {
     }
   }
 
+  /** Int arrays are encoded with their length followed by bytes. */
+  public static class ByteArrays {
+    public static int encodedLength(byte[] bytes) {
+      return 4 + bytes.length;
+    }
+
+    public static void encode(ByteBuf buf, byte[] bytes) {
+      buf.writeInt(bytes.length);
+      for (int i : bytes) {
+        buf.writeByte(i);
+      }
+    }
+
+    public static byte[] decode(ByteBuf buf) {
+      int length = buf.readInt();
+      byte[] bytes = new byte[length];
+      for (int i = 0; i < bytes.length; i++) {
+        bytes[i] = buf.readByte();
+      }
+      return bytes;
+    }
+  }
+
   /** Int arrays are encoded with their length followed by ints. */
   public static class IntArrays {
     public static int encodedLength(int[] ints) {
