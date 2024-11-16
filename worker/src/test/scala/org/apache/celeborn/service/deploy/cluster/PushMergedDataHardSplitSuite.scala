@@ -88,11 +88,11 @@ class PushMergedDataHardSplitSuite extends AnyFunSuite
     val partitionLocationMap =
       shuffleClient.getPartitionLocation(SHUFFLE_ID, MAP_NUM, PARTITION_NUM)
     val worker2PartitionIds = mutable.Map.empty[WorkerInfo, ArrayBuffer[Int]]
-    partitionLocationMap.forEach {
-      (partitionId, partitionLocation) =>
-        worker2PartitionIds
-          .getOrElseUpdate(partitionLocation.getWorker, ArrayBuffer.empty)
-          .append(partitionId)
+    for (partitionId <- 0 until PARTITION_NUM) {
+      val partitionLocation = partitionLocationMap.get(partitionId)
+      worker2PartitionIds
+        .getOrElseUpdate(partitionLocation.getWorker, ArrayBuffer.empty)
+        .append(partitionId)
     }
     val partitions = worker2PartitionIds.values.filter(_.size >= 2).head
     assert(partitions.length >= 2)
